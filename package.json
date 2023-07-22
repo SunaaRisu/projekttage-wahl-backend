@@ -1,0 +1,14 @@
+{
+  "name": "projekttage-wahl-backend",
+  "version": "1.0.0",
+  "description": "Backend for projekttage-wahl webservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sunaa Risu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
