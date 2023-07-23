@@ -6,6 +6,7 @@ const cors = require('cors');
 
 // Routes
 
+const userRoutes = require('./routes/user');
 
 
 // mongoose connect 
@@ -14,6 +15,12 @@ mongoose.connect(
     'mongodb+srv://projekttagewahl:48frMUyqhQXFKQeI@cluster0.wnx4gbk.mongodb.net/'
 );
 mongoose.Promise = global.Promise;
+
+
+// body-parser
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 
 // CORS
@@ -37,6 +44,10 @@ app.use(
 // });
 // idk!!!!!!!!!!!
 
+// Use Routes
+
+app.use('/user', userRoutes);
+
 
 // Error
 
@@ -49,13 +60,6 @@ app.use((error, req, res, next) => {
     })
 });
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json())
 
-app.use(( req, res, next) => {
-    res.status(200).json({
-        message: 'It works!'
-    });
-});
 
 module.exports = app;
