@@ -10,14 +10,14 @@ const userSchema = mongoose.Schema({
     class: { type: Number, required: true},
     project: {
         favs: {type: Array, required: true},
-        first: {type: ObjectId, required: true},
-        second: {type: ObjectId, required: true},
-        third: {type: ObjectId, required: true},
-        final: {type: ObjectId, required: true}
+        first: {type: String, required: true},
+        second: {type: String, required: true},
+        third: {type: String, required: true},
+        final: {type: String, required: true}
     },
     ownProject: {
         hasProject: {type: Boolean, required: true},
-        project: {type: ObjectId, required: true},
+        project: {type: String, required: true},
     }
 });
 
