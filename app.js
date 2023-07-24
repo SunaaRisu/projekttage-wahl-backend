@@ -7,6 +7,7 @@ const cors = require('cors');
 // Routes
 
 const userRoutes = require('./routes/user');
+const projectRoutes = require('./routes/project');
 
 
 // mongoose connect 
@@ -47,6 +48,7 @@ app.use(
 // Use Routes
 
 app.use('/user', userRoutes);
+app.use('/project', projectRoutes);
 
 
 // Error
