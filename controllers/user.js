@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 exports.user_login = (req, res, next) => {
-    User.find({$or:[{ email: req.body.userIdentifier }, { shortID: req.body.userIdentifier }]   })
+    User.find({$or:[{ username: req.body.userIdentifier }, { shortID: req.body.userIdentifier }]   })
         .exec()
         .then(user => {
             if (user.length < 1) {
