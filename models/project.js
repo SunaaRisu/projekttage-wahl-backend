@@ -9,7 +9,7 @@ const projectSchema = mongoose.Schema({
         category: {type: String, required: true},
         description: {type: String, required: true},
         projectManagment: {type: Array, required: true},
-        cost: {type: Array, required: true},
+        cost: {type: Number, required: true},
         room: {type: Number, required: true},
         media: {
             mainImage: {type: String, required: true},
