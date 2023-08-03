@@ -14,7 +14,7 @@ exports.user_login = (req, res, next) => {
                 });
             };
 
-            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+            bcryptjs.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     return res.status(500).json({
                         error: 'internal server error'
