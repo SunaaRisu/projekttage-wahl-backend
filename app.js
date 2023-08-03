@@ -13,7 +13,7 @@ const projectRoutes = require('./routes/project');
 // mongoose connect 
 
 mongoose.connect(    
-    'mongodb+srv://projekttagewahl:48frMUyqhQXFKQeI@cluster0.wnx4gbk.mongodb.net/'
+    'mongodb+srv://projekttagewahl:' + process.env.DB_PWD + '@cluster0.wnx4gbk.mongodb.net/'
 );
 mongoose.Promise = global.Promise;
 
@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 app.use(
     cors({ 
-        origin: '', 
+        origin: 'http://localhost:5173', 
         methods: ['GET', 'POST'], 
         credentials :  false
     })
