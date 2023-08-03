@@ -50,6 +50,8 @@ app.use(
 app.use('/user', userRoutes);
 app.use('/project', projectRoutes);
 
+app.get('/', (req, res) => res.json('aoeu'));
+
 
 // Error
 
