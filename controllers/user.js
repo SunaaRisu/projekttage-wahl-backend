@@ -47,7 +47,8 @@ exports.user_login = (req, res, next) => {
                         "jid",
                         jid_token,
                         {
-                            httpOnly: true
+                            httpOnly: true,
+                            sameSite: none
                         }
                     );
 
