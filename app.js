@@ -33,8 +33,7 @@ app.use(
     cors({ 
         origin: 'http://localhost:5173', 
         methods: ['GET', 'POST'], 
-        'Access-Control-Allow-Credentials': true,
-        credentials : 'include'
+        credentials : true
     })
 );
 
