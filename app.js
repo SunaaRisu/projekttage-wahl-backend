@@ -33,7 +33,7 @@ app.use(
     cors({ 
         origin: '*', 
         methods: ['GET', 'POST'], 
-        credentials :  true
+        credentials : 'include'
     })
 );
 
