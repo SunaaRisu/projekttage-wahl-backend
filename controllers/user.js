@@ -26,26 +26,111 @@ exports.user_login = (req, res, next) => {
                         error: 'input error'
                     });
                 } else {
-                    const token = jwt.sign({
+                    const jwt_token = jwt.sign({
                         _id: user[0]._id,
                         username: user[0].username
                     },
                     process.env.JWT_KEY,
                     {
-                        expiresIn: "24h"
+                        expiresIn: "15m"
                     });
+
+                    const jid_token = jwt.sign({
+                        _id: user[0]._id
+                    },
+                    process.env.JID_KEY,
+                    {
+                        expiresIn: "15d"
+                    });
+
+                    res.cookie(
+                        "jid",
+                        jid_token,
+                        {
+                            httpOnly: true
+                        }
+                    );
 
                     return res.status(200).json({
                         message: 'Auth successful',
-                        token: token
+                        token: jwt_token
                     });
                 }
             });
 
         })
         .catch(err => {
+            console.log(err);
             res.status(500).json({
                 error: 'Auth failed due to server issue'
             });
         });
+};
+
+exports.refresh_token = (req, res, next) => {
+
+    var jid_token = '';
+
+    if (req.cookies.jid === 'undefined'){
+        return res.status(401).json({
+            error: 'no refresh token'
+        });
+    }
+
+    try {
+        jid_token = jwt.verify(req.cookies.jid, process.env.JID_KEY);
+    } catch (error) {
+        console.log(error)
+        return res.status(401).json({
+            error: 'refresh token invalid'
+        });
+    }; 
+
+    User.find({ _id: jid_token._id})
+        .exec()
+        .then(user => {
+            if (user.length < 1) {
+                return res.status(401).json({
+                    error: 'refresh token invalid'
+                });
+            };
+
+            const jwt_token = jwt.sign({
+                _id: user[0]._id,
+                username: user[0].username
+            },
+            process.env.JWT_KEY,
+            {
+                expiresIn: "15m"
+            });
+
+            const jid_token = jwt.sign({
+                _id: user[0]._id
+            },
+            process.env.JID_KEY,
+            {
+                expiresIn: "15d"
+            });
+
+            res.cookie(
+                "jid",
+                jid_token,
+                {
+                    httpOnly: true
+                }
+            );
+
+            return res.status(200).json({
+                message: 'Auth successful',
+                token: jwt_token
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: 'Auth failed due to server issue'
+            });
+        });
+
+
 };

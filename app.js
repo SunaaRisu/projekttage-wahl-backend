@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -22,6 +23,8 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
 
 
 // CORS
