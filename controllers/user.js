@@ -51,10 +51,6 @@ exports.user_login = (req, res, next) => {
                         }
                     );
 
-                    res.setHeader(
-                        'Access-Control-Allow-Credentials', 'true'
-                    )
-
                     return res.status(200).json({
                         message: 'Auth successful',
                         token: jwt_token
