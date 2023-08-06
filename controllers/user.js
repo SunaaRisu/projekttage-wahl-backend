@@ -49,7 +49,8 @@ exports.user_login = (req, res, next) => {
                         {
                             httpOnly: true,
                             secure: true,
-                            sameSite: 'none'
+                            sameSite: 'none',
+                            expires: new Date(Date.now() + 1296000000) //15 Days
                         }
                     );
 
