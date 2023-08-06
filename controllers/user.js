@@ -119,7 +119,10 @@ exports.refresh_token = (req, res, next) => {
                 "jid",
                 jid_token,
                 {
-                    httpOnly: true
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'none',
+                    expires: new Date(Date.now() + 1296000000) //15 Days
                 }
             );
 
