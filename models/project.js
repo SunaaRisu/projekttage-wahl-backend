@@ -6,7 +6,6 @@ const projectSchema = mongoose.Schema({
     aprooved: { type: Boolean, required: true},
     projectDetails: {
         name: {type: String, required: true},
-        category: {type: String, required: true},
         description: {type: String, required: true},
         projectManagment: {type: Array, required: true},
         cost: {type: Number, required: true},

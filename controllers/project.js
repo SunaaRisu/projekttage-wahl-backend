@@ -8,7 +8,6 @@ exports.project_create = (req, res, next) => {
         aprooved: true,
         projectDetails: {
             name: req.body.name,
-            category: req.body.category,
             description: req.body.description,
             projectManagment: req.body.projectManagment,
             cost: req.body.cost,
@@ -63,7 +62,6 @@ exports.project_get_all = (req, res, next) => {
 };
 
 exports.project_get_specific = (req, res, next) => {
-
     Project.find({_id: req.body._id})
         .exec()
         .then(result => {
@@ -83,4 +81,4 @@ exports.project_get_specific = (req, res, next) => {
                 error: 'Internal server error'
             });
         });
-}
+};
